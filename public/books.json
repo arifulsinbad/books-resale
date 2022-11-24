@@ -1,0 +1,95 @@
+[
+{ "_id": 1,
+"name": "Quran Mazid",
+"details": "Different types of Quran majeed Translation collection",
+"views": "500",
+"img": "https://www.freepnglogos.com/uploads/al-quran-png/al-quran-the-quran-and-itret-asre-zohur-cultural-institute-arak-19.png",
+"bg":"bg-accent",
+ "catagory":[
+  {
+   "id": 1,
+   "name":"Hafeezi Quran Sharif",
+   "details":"Noorani Hafezi Emdadia Library al Quran collection",
+   "price": "200",
+   "img": "https://image.winudf.com/v2/image1/Y29tLmVraHVzaGV5c3RvcmUucXVyYW5famF6X3RoaXJ0eV9pY29uXzE1NDk2ODYwODNfMDk2/icon.png?w=&fakeurl=1"
+   
+  },
+  {
+   "id": 2,
+   "name":"Al Quran Translation",
+   "details":"Bangla and English translation al Quran collection",
+   "price":"500",
+   "img":"https://image.winudf.com/v2/image1/Y29tLmdyZWVuYXBwc3R1ZGlvLnF1cmFuX3NoYXJpZl9iYW5nbGFfb3J0aG9faWNvbl8xNTQzNTY4NzA5XzA2NQ/icon.png?w=&fakeurl=1"
+  },
+  {
+   "id": 3,
+   "name":"Tafsir Mareful Quran",
+   "details":"Al Quran Tafsir Bangla translation Collection",
+   "price":"5000",
+   "img":"https://image.winudf.com/v2/image1/Y29tLnJveWFsX2JlbmdhbF9hcHBzLnRhZnNpcl9tYXJlZnVsX3F1cmFuX2ljb25fMTU0Mjg5NzM1Ml8wNjg/icon.png?w=&fakeurl=1"
+  }
+ ]
+},
+{ "_id": 2,
+"name": "Hadis Books",
+"details": "Different types of Hadis Books collection",
+"views": "400",
+"img": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Muhammad2.svg/800px-Muhammad2.svg.png",
+"bg":"bg-orange-300",
+ "catagory":[
+  {
+   "id": 1,
+   "name":"Bukhari Sharif",
+   "details":" Bukhari sharif Bangla and Arbi translation collection",
+   "price": "4800",
+   "img": "https://play-lh.googleusercontent.com/yQOzVOcGJ4QrtiyRYr_O3oTWCjorT_Kcuoy0ik5GoEHs2TfKFKC6yB7e2teElhsadjQ"
+   
+  },
+  {
+   "id": 2,
+   "name":"Muslim Sharif",
+   "details":"Muslim sharif Bangla and Arbi translation collection",
+   "price":"4500",
+   "img":"https://play-lh.googleusercontent.com/iavVo_BoAa4Zrypjshb2_cUwYPwU21jrqk2OEM2V2JNQsZcdL52IQz9tRqk4CWZpUw"
+  },
+  {
+   "id": 3,
+   "name":"Abu Daud Sharif",
+   "details":"Abu Daud Sharif Bangla and Arbi translation collection",
+   "price":"4000",
+   "img":"https://play-lh.googleusercontent.com/AHZyhZURGzxRhFOgp2SgwSPZ8hWoByEi04iIqisJ92DOsR8kKlNs5_XFHdVnZeBBoKk"
+  }
+ ]
+},
+{ "_id": 3,
+"name": "Biography Books",
+"details": "Different types of Biography Books collection",
+"views": "390",
+"img": "https://yt3.ggpht.com/x3TcyPMZ-0DD5Tku-p_q66GGnb4GJrFnC90zwH1-YJFNVi0i1c84ppRTQjRghay1mhzv2bzwZQ=s900-c-k-c0x00ffffff-no-rj",
+"bg":"bg-light",
+ "catagory":[
+  {
+   "id": 1,
+   "name":"Rasullah (s:) Sirah",
+   "details":" Rasullah (s:) Sirah Bangla and Arbi translation collection",
+   "price": "3500",
+   "img": "https://play-lh.googleusercontent.com/w3QhVYQs-3CSZIwjmZOjxzb5-uOa7FzGLpbsU60qYcn99JRKXBzDw3cCjpsaG5-gS98V"
+   
+  },
+  {
+   "id": 2,
+   "name":"Nobider Jiboni",
+   "details":"Nobider Jiboni Bangla and Arbi translation collection",
+   "price":"4500",
+   "img":"https://play-lh.googleusercontent.com/WOiAi-0fTrPzQewO2i4Hu8JKd1s7MehdjUxgo-aj2qR58dJd0uhS77OY8DPM63ZUx8A"
+  },
+  {
+   "id": 3,
+   "name":"Shahabider Jiboni",
+   "details":"Shahabider Jiboni Bangla and Arbi translation collection",
+   "price":"4700",
+   "img":"https://play-lh.googleusercontent.com/N4_jb_w2uHW8PoDzXi5F-267gRsMCXUA0QoGuyYTJ_6jyYws4FtXKchf21T7w1uFTXQ"
+  }
+ ]
+}
+]

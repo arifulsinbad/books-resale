@@ -1,3 +1,4 @@
+import CatagoriesItem from "../CatagoriesItems.js/CatagoriesItem";
 import Home from "../Page/Home/Home";
 
 const { createBrowserRouter } = require("react-router-dom");
@@ -10,7 +11,12 @@ const router = createBrowserRouter([
   children:[
    {
     path:'/', element:<Home></Home>
+   },
+   {
+    path:'/catagoriesItem/:id', element:<CatagoriesItem></CatagoriesItem>,
+    loader:({params})=>fetch(`books.json${params.id}`)
    }
+ 
   ]
  }
 ]);

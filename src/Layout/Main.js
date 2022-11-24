@@ -5,9 +5,11 @@ import Navbar from './Navbar';
 
 const Main = () => {
  return (
-  <div className=''>
+  <div >
    <Navbar></Navbar>
-   <Outlet></Outlet>
+   <div className='w-11/12 mx-auto'>
+   <Outlet ></Outlet>
+   </div>
    <Footer></Footer>
   </div>
  );

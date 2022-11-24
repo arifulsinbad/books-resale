@@ -1,36 +1,20 @@
-import React from 'react';
+import { data } from 'autoprefixer';
+import React, { useEffect, useState } from 'react';
 import logo1 from '../../../images/logo/logo1.png'
 // import logo2 from '../../../images/logo/logo2.png'
 import logo3 from '../../../images/logo/logo3.jpg'
 import Catagory from './Catagory';
 
 const Catagories = () => {
- const catagory = [
-  {
-   _id: 1,
-   name: 'Quran Mazid',
-   details: 'Different types of Quran majeed Translation collection',
-   catagory: '3',
-   img: logo1,
-   bg:'bg-accent'
-  },
-  {
-   _id: 2,
-   name: 'Hadis Books',
-   details: 'Different types of Hadis Books collection',
-   catagory: '3',
-   img: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Muhammad2.svg/800px-Muhammad2.svg.png",
-   bg: 'bg-orange-300'
-  },
-  {
-   _id: 3,
-   name: 'Biography Books',
-   details: 'Different types of Biography Books collection',
-   catagory: '3',
-   img: logo3,
-   bg:'bg-light'
-  }
- ]
+const [catagory, setCatagory] = useState([])
+useEffect(()=>{
+   fetch('books.json')
+   .then(res=>res.json())
+   .then(data=>{
+      setCatagory(data)
+   })
+   .catch(err=>console.log(err))
+},[])
  return (
   <div>
    <h1 className='text-4xl font-bold text-center text-gray-600'>Books Catagories</h1>
