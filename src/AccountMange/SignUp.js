@@ -5,15 +5,21 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from './AuthProvider';
 
 const SignUp = () => {
- const {user, signUp, googleLogin}=useContext(AuthContext)
+ const {user, signUp, googleLogin, updateUser}=useContext(AuthContext)
  const provider = new GoogleAuthProvider()
  const { register, handleSubmit, formState: { errors } } = useForm();
  const [error, setError]=useState('')
  const handleSignup = (data)=>{
+  const profile = {
+   displayName:data.name
+  }
 signUp(data.email, data.password)
 .then(result=>{
  const user =result.user
  console.log(user)
+ updateUser(profile)
+ .then(()=>{})
+ .catch(error=>console.error(error))
 })
 .catch(error=>{
  console.error(error)
