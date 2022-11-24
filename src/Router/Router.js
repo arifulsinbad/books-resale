@@ -1,4 +1,5 @@
 import Login from "../AccountMange/Login";
+import SignUp from "../AccountMange/SignUp";
 import CatagoriesItem from "../CatagoriesItems.js/CatagoriesItem";
 import Home from "../Page/Home/Home";
 
@@ -21,7 +22,7 @@ const router = createBrowserRouter([
     path:'/login', element:<Login></Login>
    },
    {
-    path:'/signUp'
+    path:'/signUp', element:<SignUp></SignUp>
    }
  
   ]
