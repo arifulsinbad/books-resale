@@ -1,7 +1,7 @@
 import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from './AuthProvider';
 
 const SignUp = () => {
@@ -9,6 +9,7 @@ const SignUp = () => {
  const provider = new GoogleAuthProvider()
  const { register, handleSubmit, formState: { errors } } = useForm();
  const [error, setError]=useState('')
+ const navigete = useNavigate()
  const handleSignup = (data)=>{
   const profile = {
    displayName:data.name
@@ -18,7 +19,9 @@ signUp(data.email, data.password)
  const user =result.user
  console.log(user)
  updateUser(profile)
- .then(()=>{})
+ .then(()=>{
+  navigete('/')
+ })
  .catch(error=>console.error(error))
 })
 .catch(error=>{
