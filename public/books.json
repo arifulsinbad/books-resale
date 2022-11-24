@@ -1,5 +1,7 @@
 [
-{ "_id": 1,
+{ 
+ "_id": 1,
+"catagory_id": 1,
 "name": "Quran Mazid",
 "details": "Different types of Quran majeed Translation collection",
 "views": "500",
@@ -30,7 +32,9 @@
   }
  ]
 },
-{ "_id": 2,
+{ 
+ "_id": 2,
+"catagory_id": 2,
 "name": "Hadis Books",
 "details": "Different types of Hadis Books collection",
 "views": "400",
@@ -61,7 +65,9 @@
   }
  ]
 },
-{ "_id": 3,
+{ 
+ "_id": 3, 
+"catagory_id": 3,
 "name": "Biography Books",
 "details": "Different types of Biography Books collection",
 "views": "390",

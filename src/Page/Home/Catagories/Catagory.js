@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Catagory = ({catagory}) => {
- const {name, details, catagory: catagories, img, bg, views, _id} = catagory;
+ const {name, details, catagory: catagories, img, bg, views, catagory_id} = catagory;
  return (
   <div>
 <div className={`flex ${bg}  shadow-xl rounded-lg border mt-5 mb-24`}>
@@ -15,7 +15,7 @@ const Catagory = ({catagory}) => {
     <p>Views : {views}</p>
     </div>
     <div className="card-actions justify-end">
-      <Link to={`/catagoriesItem/${_id}`}><button className="btn btn-primary">Collect Now</button></Link>
+      <Link to={`/catagoriesItem/${catagory_id}`}><button className="btn btn-primary">Collect Now</button></Link>
     </div>
   </div>
 </div>

@@ -1,3 +1,4 @@
+import Login from "../AccountMange/Login";
 import CatagoriesItem from "../CatagoriesItems.js/CatagoriesItem";
 import Home from "../Page/Home/Home";
 
@@ -13,8 +14,14 @@ const router = createBrowserRouter([
     path:'/', element:<Home></Home>
    },
    {
-    path:'/catagoriesItem/:id', element:<CatagoriesItem></CatagoriesItem>,
-    loader:({params})=>fetch(`books.json${params.id}`)
+    path:'/catagoriesItem/:catagory_id', element:<CatagoriesItem></CatagoriesItem>,
+    loader:({params})=>fetch(`books.json/${params.id}`)
+   },
+   {
+    path:'/login', element:<Login></Login>
+   },
+   {
+    path:'/signUp'
    }
  
   ]
