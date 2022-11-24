@@ -1,10 +1,12 @@
+import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { AuthContext } from './AuthProvider';
 
 const SignUp = () => {
- const {user, signUp}=useContext(AuthContext)
+ const {user, signUp, googleLogin}=useContext(AuthContext)
+ const provider = new GoogleAuthProvider()
  const { register, handleSubmit, formState: { errors } } = useForm();
  const [error, setError]=useState('')
  const handleSignup = (data)=>{
@@ -14,9 +16,17 @@ signUp(data.email, data.password)
  console.log(user)
 })
 .catch(error=>{
- console.log(error)
+ console.error(error)
  setError(error.message)
 })
+ }
+ const handleProvider =()=>{
+  googleLogin(provider)
+  .then(result=>{
+   const user =result.user
+   console.log(user)
+  })
+  .catch(error=>console.error(error))
  }
  return (
   <div className='h-[800px] flex justify-center items-center'>
@@ -70,7 +80,7 @@ signUp(data.email, data.password)
         <p className='text-red-600'>{error}</p>
       </form>
       <div className='divider'>OR</div>
-      <button className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button>
+      <button onClick={handleProvider} className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button>
   </div>
     </div>
  );
