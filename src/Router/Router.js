@@ -1,6 +1,8 @@
 import Login from "../AccountMange/Login";
 import SignUp from "../AccountMange/SignUp";
 import CatagoriesItem from "../CatagoriesItems.js/CatagoriesItem";
+import AllUser from "../Dashboard/AllUser";
+import Dashboard from "../Dashboard/Dashboard";
 import DashboardLayout from "../Dashboard/DashboardLayout";
 import Home from "../Page/Home/Home";
 
@@ -30,7 +32,14 @@ const router = createBrowserRouter([
  },
  {
   path:'/dashboardLayout', element:<DashboardLayout></DashboardLayout>,
-  
+  children: [
+   {
+    path:'/dashboardLayout', element:<Dashboard></Dashboard>
+   },
+   {
+    path:'/dashboardLayout/allUser', element:<AllUser></AllUser>
+   }
+  ]
  }
 ]);
 export default router;
