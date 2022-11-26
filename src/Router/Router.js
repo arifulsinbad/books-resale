@@ -1,6 +1,7 @@
 import Login from "../AccountMange/Login";
 import SignUp from "../AccountMange/SignUp";
 import CatagoriesItem from "../CatagoriesItems.js/CatagoriesItem";
+import AddProduct from "../Dashboard/AddProduct";
 import AllUser from "../Dashboard/AllUser";
 import Dashboard from "../Dashboard/Dashboard";
 import DashboardLayout from "../Dashboard/DashboardLayout";
@@ -18,15 +19,17 @@ const router = createBrowserRouter([
     path:'/', element:<Home></Home>
    },
    {
-    path:'/catagoriesItem/:catagory_id', element:<CatagoriesItem></CatagoriesItem>,
-    loader:({params})=>fetch(`books.json/${params.id}`)
+    path:'/catagoriesItem/:id', element:<CatagoriesItem></CatagoriesItem>,
+    loader:({params})=>{
+     return fetch(`http://localhost:5000/products/${params.id}`)}
    },
    {
     path:'/login', element:<Login></Login>
    },
    {
     path:'/signUp', element:<SignUp></SignUp>
-   }
+   },
+
  
   ]
  },
@@ -38,6 +41,9 @@ const router = createBrowserRouter([
    },
    {
     path:'/dashboardLayout/allUser', element:<AllUser></AllUser>
+   },
+   {
+    path:'/dashboardLayout/addProduct', element:<AddProduct></AddProduct>
    }
   ]
  }

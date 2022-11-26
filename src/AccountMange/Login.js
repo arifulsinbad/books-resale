@@ -2,6 +2,7 @@ import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import useToken from '../SystemSecret/useToken';
 import { AuthContext } from './AuthProvider';
 
 const Login = () => {
@@ -11,13 +12,19 @@ const Login = () => {
  const provider = new GoogleAuthProvider()
  const location = useLocation()
  const navigate = useNavigate()
+ const [createEmail, setCreateEmail] = useState('')
+ const [token]=useToken(createEmail)
  const from = location.state?.from?.pathname || '/'
+ console.log(createEmail)
+ if(token){
+  navigate(from, {replace: true})
+ }
  const handleLogin= (data)=>{
   console.log(data)
   login(data.email, data.password)
   .then(result=>{
     const user = result.user
-    navigate(from, {replace: true})
+   setCreateEmail(data.email)
     console.log(user)
   })
   .catch(error=>{

@@ -2,14 +2,22 @@ import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
+import useToken from '../SystemSecret/useToken';
+
 import { AuthContext } from './AuthProvider';
 
 const SignUp = () => {
  const {user, signUp, googleLogin, updateUser}=useContext(AuthContext)
  const provider = new GoogleAuthProvider()
- const { register, handleSubmit, formState: { errors } } = useForm();
  const [error, setError]=useState('')
  const navigete = useNavigate()
+ const [createEmail, setCreateEmail] = useState('')
+ const { register, handleSubmit, formState: { errors } } = useForm();
+ const [token]=useToken(createEmail)
+
+ if(token){
+  navigete('/')
+ }
  const handleSignup = (data)=>{
   const profile = {
    displayName:data.name
@@ -20,7 +28,8 @@ signUp(data.email, data.password)
  console.log(user)
  updateUser(profile)
  .then(()=>{
-  navigete('/')
+  usersData(data)
+setCreateEmail(data.email)
  })
  .catch(error=>console.error(error))
 })
@@ -37,6 +46,24 @@ signUp(data.email, data.password)
   })
   .catch(error=>console.error(error))
  }
+const usersData =(user)=>{
+  const users = {
+    name:user.name,
+    email:user.email
+  
+   }
+   console.log(users)
+  if(users){
+   fetch('http://localhost:5000/users',{
+    method: 'POST',
+    headers:{
+      'content-type' : 'application/json'
+    },
+    body: JSON.stringify(users)
+   })
+  }
+}
+ 
  return (
   <div className='h-[800px] flex justify-center items-center'>
   <div>

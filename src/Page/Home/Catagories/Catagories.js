@@ -8,7 +8,7 @@ import Catagory from './Catagory';
 const Catagories = () => {
 const [catagory, setCatagory] = useState([])
 useEffect(()=>{
-   fetch('books.json')
+   fetch('http://localhost:5000/products')
    .then(res=>res.json())
    .then(data=>{
       setCatagory(data)
