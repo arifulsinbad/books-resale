@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import Loading from '../Private/Loading';
 
-const AllUser = () => {
+const AllBuyer = () => {
 
   const {data: users = [], isLoading, refetch} = useQuery({
     queryKey:['users'],
@@ -55,7 +55,7 @@ const handleAdmin = (id)=>{
      
      
      {
-      users.map((user, i)=><tr className="hover">
+      users.map((user, i)=>user.user !== 'seller' && user.role !== 'admin' && <tr className="hover">
       <th>{i+1}</th>
       <td>{user.name}</td>
       <td>{user.email}</td>
@@ -79,4 +79,4 @@ const handleAdmin = (id)=>{
  );
 };
 
-export default AllUser;
+export default AllBuyer;

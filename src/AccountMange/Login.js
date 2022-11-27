@@ -37,6 +37,7 @@ const Login = () => {
   .then(result=>{
     const user = result.user
     console.log(user)
+  //  localStorage.setItem('accessToken', user?.accessToken)
   })
   .catch(error=>console.error(error))
  }

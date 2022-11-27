@@ -10,6 +10,7 @@ const SignUp = () => {
  const {user, signUp, googleLogin, updateUser}=useContext(AuthContext)
  const provider = new GoogleAuthProvider()
  const [error, setError]=useState('')
+ 
  const navigete = useNavigate()
  const [createEmail, setCreateEmail] = useState('')
  const { register, handleSubmit, formState: { errors } } = useForm();
@@ -19,6 +20,7 @@ const SignUp = () => {
   navigete('/')
  }
  const handleSignup = (data)=>{
+  console.log(data)
   const profile = {
    displayName:data.name
   }
@@ -29,7 +31,7 @@ signUp(data.email, data.password)
  updateUser(profile)
  .then(()=>{
   usersData(data)
-setCreateEmail(data.email)
+
  })
  .catch(error=>console.error(error))
 })
@@ -43,17 +45,19 @@ setCreateEmail(data.email)
   .then(result=>{
    const user =result.user
    console.log(user)
+  //  setCreateEmail(user?.email)
   })
   .catch(error=>console.error(error))
  }
-const usersData =(user)=>{
+const usersData =(data)=>{
   const users = {
-    name:user.name,
-    email:user.email
+    name:data.name,
+    email:data.email,
+    user: data.user
   
    }
    console.log(users)
-  if(users){
+  
    fetch('http://localhost:5000/users',{
     method: 'POST',
     headers:{
@@ -61,9 +65,19 @@ const usersData =(user)=>{
     },
     body: JSON.stringify(users)
    })
-  }
+   .then(res=>res.json())
+   .then(data=>{
+    console.log(data)
+    setCreateEmail(users.email)
+   })
+   .then(err=>{
+    console.log(err)
+   })
+  
 }
- 
+//  const check = (event)=>{
+//   console.log(event.)
+//  }
  return (
   <div className='h-[800px] flex justify-center items-center'>
   <div>
@@ -110,11 +124,20 @@ const usersData =(user)=>{
    
     
   </div>
+<div>
+  <h3 className='text-xl text-accent'>Please Selected Seller and Buyer</h3>
+<input  {...register("user", { required: 'Checked box  Select' })} type="radio" value="seller" /> <span className='text-info font-bold'>Seller</span> <br/>
+      <input {...register("user", { required: 'Checked box  Select' })} type="radio" value="buyer" /> <span className='text-info font-bold'>Buyer</span>
+      {errors.user && <p className='text-red-600'>{errors.user?.message}</p>}
+</div>
+
         <input className='w-full btn btn-accent mt-8' type="submit" />
   
         <span className="label-text text-center">Alredy have a Account?<Link to='/login' className='text-info'>Login Now</Link></span>
         <p className='text-red-600'>{error}</p>
+        
       </form>
+      
       <div className='divider'>OR</div>
       <button onClick={handleProvider} className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button>
   </div>

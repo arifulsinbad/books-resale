@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
+import { AuthContext } from '../AccountMange/AuthProvider';
 import Navbar from '../Layout/Navbar';
+import UseAdmin from '../SystemSecret/UseAdmin';
+import useSeller from '../SystemSecret/useSeller';
 
 const DashboardLayout = () => {
+  const {user}=useContext(AuthContext)
+const [isAdmin]=UseAdmin(user?.email)
+const [isSeller]=useSeller(user?.email)
+
  return (
   <div>
    <Navbar></Navbar>
@@ -18,8 +25,19 @@ const DashboardLayout = () => {
     <ul className="menu p-4 w-80 bg-base-100 text-base-content">
     
       <li><Link to='/dashboardLayout'>My Catagory</Link></li>
-      <li><Link to='/dashboardLayout/allUser'>All User</Link></li>
-      <li><Link to='/dashboardLayout/addProduct'>Add Procduct</Link></li>
+      <li><Link to='/dashboardLayout/myProducts'>My Prodects</Link></li>
+     {
+      isAdmin &&  <li><Link to='/dashboardLayout/allUser'>All User</Link></li>
+     }
+     {
+      isAdmin &&  <li><Link to='/dashboardLayout/allSeller'>All Seller</Link></li>
+     }
+     {
+      isAdmin &&  <li><Link to='/dashboardLayout/allBuyer'>All Buyer</Link></li>
+     }
+      {
+       isSeller && <li><Link to='/dashboardLayout/addProduct'>Add Procduct</Link></li>
+      }
     </ul>
   
   </div>
