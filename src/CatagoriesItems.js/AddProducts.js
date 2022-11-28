@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 const AddProducts = ({addPD, products, handleModal}) => {
 
- const {bookName: name, img, details, price, spacialty} = addPD
+ const {bookName: name, img, details, price, spacialty, sold} = addPD
 
  return (
   <div>
@@ -17,6 +17,7 @@ const AddProducts = ({addPD, products, handleModal}) => {
   <h2 className="card-title">{name}</h2>
   <p>{details}</p>
   <p>Price : {price}tk</p>
+  <p className='text-xl font-semibold text-green-500'>{sold}</p>
   <div className="card-actions justify-end">
    
     <label htmlFor="my-modal-3" onClick={()=>handleModal(addPD)} className="btn btn-primary">Buy Now</label>

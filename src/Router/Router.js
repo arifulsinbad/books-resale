@@ -9,6 +9,8 @@ import Dashboard from "../Dashboard/Dashboard";
 import DashboardLayout from "../Dashboard/DashboardLayout";
 import MyProducts from "../Dashboard/MyProducts";
 import DispalyError from "../DisplayError/DispalyError";
+import Advertisement from "../Page/Home/Advertisement";
+
 import Home from "../Page/Home/Home";
 import Payments from "../Payment/Payments";
 import AdminRoute from "../SystemSecret/AdminRoute";
@@ -37,7 +39,12 @@ const router = createBrowserRouter([
    {
     path:'/signUp', element:<SignUp></SignUp>
    },
-  
+//   {
+// path:'/advertisement/:id',  element:<Advertisement></Advertisement>,
+// loader: ({params})=>{
+//   return fetch(`http://localhost:5000/addProduct/${params.id}`)
+// } 
+//   }
  
   ]
  },

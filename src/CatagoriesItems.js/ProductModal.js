@@ -5,7 +5,7 @@ import { AuthContext } from '../AccountMange/AuthProvider';
 const ProductModal = ({modal, date}) => {
  const {user} = useContext(AuthContext)
  const { register, handleSubmit, formState: { errors } } = useForm();
- const {name, price} = modal;
+ const {name, price, email} = modal;
 
 const handleInfo = (data)=>{
 console.log(data)
@@ -16,7 +16,8 @@ const userInfo = {
  phone: data.phone,
  addressInfo: data.address,
  price,
- date 
+ date,
+ sellerEmail: email
 } 
 
 fetch('http://localhost:5000/userInfo',{
