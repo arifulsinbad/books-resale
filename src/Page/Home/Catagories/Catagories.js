@@ -8,7 +8,7 @@ import Catagory from './Catagory';
 const Catagories = () => {
 const [catagory, setCatagory] = useState([])
 useEffect(()=>{
-   fetch('http://localhost:5000/products')
+   fetch('https://books-market-smoky.vercel.app/products')
    .then(res=>res.json())
    .then(data=>{
       setCatagory(data)

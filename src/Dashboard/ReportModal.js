@@ -2,26 +2,28 @@ import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../AccountMange/AuthProvider';
 
-const ProductModal = ({modal, date, }) => {
+const ReportModal = ({modal}) => {
  const {user} = useContext(AuthContext)
  const { register, handleSubmit, formState: { errors } } = useForm();
- const {name, price, email, _id} = modal;
+//  const { date,  sellerEmail,} = modal;
 
 const handleInfo = (data)=>{
-console.log(data)
+// console.log(data)
 const userInfo = {
  userName: user?.displayName,
- bookName: name,
+
  email: user?.email,
+ 
  phone: data.phone,
- addressInfo: data.address,
- price,
- date,
- sellerEmail: email,
- sellerId: _id
+ reportInfo: data.report,
+sellerEmail: modal.sellerEmail,
+productId : modal.sellerId
+
+ 
+
 } 
 
-fetch('https://books-market-smoky.vercel.app/userInfo',{
+fetch('https://books-market-smoky.vercel.app/report',{
  method: 'POST',
  headers:{
   'content-type' : 'application/json'
@@ -31,7 +33,7 @@ fetch('https://books-market-smoky.vercel.app/userInfo',{
 .then(res=>res.json())
 .then(data=>{
   if(data.acknowledged){
-    alert('Booking Success')
+    alert('Report Success')
   }
  console.log(data)
 })
@@ -49,8 +51,8 @@ fetch('https://books-market-smoky.vercel.app/userInfo',{
 <div className="modal">
   <div className="modal-box relative">
     <label htmlFor="my-modal-3" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-    <h3 className="text-lg font-bold">{name}</h3>
-    <p className="py-4">Date : {date}</p>
+    {/* <h3 className="text-lg font-bold">{bookName}</h3> */}
+    {/* <p className="py-4">Date : {date}</p> */}
     <div>
     <form onSubmit={handleSubmit(handleInfo)} >
         
@@ -82,15 +84,15 @@ fetch('https://books-market-smoky.vercel.app/userInfo',{
  </div>
         <div className="form-control w-full ">
     <label className="label">
-      <span className="label-text">Address Info</span>
+      <span className="label-text">Report Subject</span>
   
     </label>
-    <textarea type='text' {...register('address',{
-     required:"Address Required"
+    <textarea type='text' {...register('report',{
+     required:"Report Required"
     })}  className="input input-bordered w-full h-20" />
-    {errors.address && <p className='text-red-600'>{errors.address?.message}</p> }  
+    {errors.report && <p className='text-red-600'>{errors.report?.message}</p> }  
  </div>
-        <input className='w-full btn btn-accent mt-8' type="submit" />
+        <input className='w-full btn btn-accent mt-8' type="submit" value='Report Modal' />
   
     
       </form>
@@ -101,4 +103,4 @@ fetch('https://books-market-smoky.vercel.app/userInfo',{
  );
 };
 
-export default ProductModal;
+export default ReportModal;

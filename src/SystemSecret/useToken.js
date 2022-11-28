@@ -10,7 +10,7 @@ console.log(email)
 useEffect(()=>{
 
 if(email){
- fetch(`http://localhost:5000/jwt?email=${email}`)
+ fetch(`https://books-market-smoky.vercel.app/jwt?email=${email}`)
  .then(res=>res.json())
  .then(data=>{
   console.log(data)

@@ -1,37 +1,32 @@
 import { useQuery } from '@tanstack/react-query';
+import { es } from 'date-fns/locale';
 import React from 'react';
 import Loading from '../Private/Loading';
 
-const AllUser = () => {
+const Reports = () => {
 
   const {data: users = [], isLoading, refetch} = useQuery({
-    queryKey:['users'],
+    queryKey:['report'],
     queryFn: async ()=>{
-      const res = await fetch('https://books-market-smoky.vercel.app/users');
+      const res = await fetch('https://books-market-smoky.vercel.app/report');
       const data = await res.json();
       return data;
     }
   })
-const handleAdmin = (id)=>{
-  fetch(`https://books-market-smoky.vercel.app/users/admin/${id}`,{
-    method: 'PUT',
-    headers:{
-      authorization: `bearer ${localStorage.getItem('accessToken')}`
-    }
+const handleDelete = (id)=>{
+  fetch(`https://books-market-smoky.vercel.app/users/report/${id}`,{
+    method: 'DELETE',
   })
-  .then(res => res.json())
+  .then(res=>res.json())
   .then(data=>{
     console.log(data)
-    if(data.modifiedCount > 0){
-      alert('Admin Create Success')
+    if(data.acknowledged){
+      alert('Report accepted Product Delete Success')
       refetch()
-    }
+     }
   })
-  .catch(err=>{
-    console.log(err)
-  })
+  .catch(err=>console.log(err))
 }
-
 
   if(isLoading){
     return <Loading></Loading>
@@ -45,8 +40,9 @@ const handleAdmin = (id)=>{
       <tr>
         <th>Number</th>
         <th>Name</th>
-        <th>Email</th>
-        <th>Admin</th>
+        <th>User Email</th>
+        <th>Seller Email</th>
+        <th>Report Subject</th>
         <th>Delete</th>
       </tr>
     </thead>
@@ -57,15 +53,13 @@ const handleAdmin = (id)=>{
      {
       users.map((user, i)=><tr className="hover">
       <th>{i+1}</th>
-      <td>{user.name}</td>
+      <td>{user.userName}</td>
       <td>{user.email}</td>
+      <td>{user.sellerEmail}</td>
+      <td>{user.reportInfo}</td>
+   
       <td>
-        {
-          user.role !== 'admin' && <button onClick={()=>handleAdmin(user._id)} className='btn btn-xs btn-info'>Make Admin</button>
-        }
-      </td>
-      <td>
-        <button  className='btn btn-xs btn-error'>Delete</button>
+        <button onClick={()=> handleDelete(user.productId)}  className='btn btn-xs btn-error'>Delete</button>
       </td>
     </tr>)
      }
@@ -79,4 +73,4 @@ const handleAdmin = (id)=>{
  );
 };
 
-export default AllUser;
+export default Reports;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Advertise = ({myItems}) => {
+const Advertise = ({myItems, handleModal}) => {
  const {name, img, details, price, spacialty} = myItems;
  return (
   <div >
@@ -15,7 +15,7 @@ const Advertise = ({myItems}) => {
     
     <div className="card-actions justify-end">
      
-      <label htmlFor="my-modal-3" className="btn btn-primary">Add Home</label>
+    <label htmlFor="my-modal-3" onClick={()=>handleModal(myItems)} className="btn btn-primary">Buy Now</label>
     </div>
   </div>
 </div>

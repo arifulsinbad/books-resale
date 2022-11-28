@@ -24,8 +24,10 @@ const [isSeller]=useSeller(user?.email)
     <label htmlFor="my-drawer-2" className="drawer-overlay"></label> 
     <ul className="menu p-4 w-80 bg-base-100 text-base-content">
     
-      <li><Link to='/dashboardLayout'>My Catagory</Link></li>
-      <li><Link to='/dashboardLayout/myProducts'>My Prodects</Link></li>
+      <li><Link to='/dashboardLayout'>My Orders</Link></li>
+      {
+       isSeller && <li><Link to='/dashboardLayout/myProducts'>My Prodects</Link></li>
+      }
      {
       isAdmin &&  <li><Link to='/dashboardLayout/allUser'>All User</Link></li>
      }
@@ -35,8 +37,14 @@ const [isSeller]=useSeller(user?.email)
      {
       isAdmin &&  <li><Link to='/dashboardLayout/allBuyer'>All Buyer</Link></li>
      }
+     {
+      isSeller &&  <li><Link to='/dashboardLayout/MyBuyer'>My Buyer</Link></li>
+     }
       {
        isSeller && <li><Link to='/dashboardLayout/addProduct'>Add Procduct</Link></li>
+      }
+      {
+       isAdmin && <li><Link to='/dashboardLayout/report'>Report</Link></li>
       }
     </ul>
   

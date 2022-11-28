@@ -14,7 +14,7 @@ const AddProduct = () => {
   const { data: spacialties, isLoading } = useQuery({
     queryKey: ['spacialty'],
     queryFn: async () => {
-      const res = await fetch('http://localhost:5000/productSpacialty', {
+      const res = await fetch('https://books-market-smoky.vercel.app/productSpacialty', {
         headers: {
           authorization: `bearer ${localStorage.getItem('accessToken')}`
         }
@@ -53,7 +53,7 @@ const AddProduct = () => {
             img: imgData.data.url
           }
           console.log(productInfo)
-          fetch('http://localhost:5000/addProduct', {
+          fetch('https://books-market-smoky.vercel.app/addProduct', {
             method: 'POST',
             headers: {
               'content-type': 'application/json',

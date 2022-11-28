@@ -6,7 +6,7 @@ const [isSeller, setIsSeller] = useState(false)
 const [isLoading, setIsLoading]=useState(true)
 useEffect(()=>{
 if(email){
- fetch(`http://localhost:5000/users/user/${email}`)
+ fetch(`https://books-market-smoky.vercel.app/users/user/${email}`)
  .then(res=>res.json())
  .then(data=>{
 

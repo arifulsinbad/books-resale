@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+import { es } from 'date-fns/locale';
 import React from 'react';
 import Loading from '../Private/Loading';
 
@@ -7,13 +8,13 @@ const AllSeller = () => {
   const {data: users = [], isLoading, refetch} = useQuery({
     queryKey:['users'],
     queryFn: async ()=>{
-      const res = await fetch('http://localhost:5000/users');
+      const res = await fetch('https://books-market-smoky.vercel.app/users');
       const data = await res.json();
       return data;
     }
   })
-const handleAdmin = (id)=>{
-  fetch(`http://localhost:5000/users/admin/${id}`,{
+const handleVerify = (id)=>{
+  fetch(`https://books-market-smoky.vercel.app/users/verify/${id}`,{
     method: 'PUT',
     headers:{
       authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -23,7 +24,7 @@ const handleAdmin = (id)=>{
   .then(data=>{
     console.log(data)
     if(data.modifiedCount > 0){
-      alert('Admin Create Success')
+      alert('Verify Create Success')
       refetch()
     }
   })
@@ -31,7 +32,20 @@ const handleAdmin = (id)=>{
     console.log(err)
   })
 }
-
+const handleDelete = (id)=>{
+  fetch(`https://books-market-smoky.vercel.app/users/delete/${id}`,{
+    method: 'DELETE',
+  })
+  .then(res=>res.json())
+  .then(data=>{
+    console.log(data)
+    if(data.acknowledged){
+      alert('Delete Success')
+      refetch()
+     }
+  })
+  .catch(err=>console.log(err))
+}
 
   if(isLoading){
     return <Loading></Loading>
@@ -61,11 +75,11 @@ const handleAdmin = (id)=>{
       <td>{user.email}</td>
       <td>
         {
-          user.role !== 'admin' && <button onClick={()=>handleAdmin(user._id)} className='btn btn-xs btn-info'>Make Admin</button>
+          user.veryfied !== 'Veryfied' && <button onClick={()=>handleVerify(user._id)} className='btn btn-xs btn-info'>Make VeryFied</button>
         }
       </td>
       <td>
-        <button  className='btn btn-xs btn-error'>Delete</button>
+        <button onClick={()=> handleDelete(user._id)}  className='btn btn-xs btn-error'>Delete</button>
       </td>
     </tr>)
      }

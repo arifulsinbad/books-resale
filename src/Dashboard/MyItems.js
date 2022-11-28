@@ -16,7 +16,7 @@ const handleAdvertisement =(data)=>{
   myProduct:_id
  }
  
- fetch('http://localhost:5000/advertisement',{
+ fetch('https://books-market-smoky.vercel.app/advertisement',{
   method: 'POST',
   headers:{
    'content-type' : 'application/json'

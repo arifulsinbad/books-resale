@@ -1,7 +1,11 @@
 import { add } from 'date-fns';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { AuthContext } from '../AccountMange/AuthProvider';
+import useVerify from '../SystemSecret/useVerify';
 
 const AddProducts = ({addPD, products, handleModal}) => {
+  const {user} = useContext(AuthContext)
+  const [isVerify] = useVerify(user?.email)
 
  const {bookName: name, img, details, price, spacialty, sold} = addPD
 
@@ -9,14 +13,17 @@ const AddProducts = ({addPD, products, handleModal}) => {
   <div>
  
   
- {
-  products.name === spacialty ? <>
+ 
+
   <div className="card card-compact  bg-base-100 shadow-xl  " style={{height: '30vw'}}>
-<figure><img src={img} alt="Shoes" className='' style={{height: '100%'}}/></figure>
+<figure><img src={img} alt="Shoes" className='' style={{height: '26vw'}}/></figure>
 <div className="card-body">
   <h2 className="card-title">{name}</h2>
   <p>{details}</p>
   <p>Price : {price}tk</p>
+  {
+    isVerify && <p className=''>Verified</p>
+  }
   <p className='text-xl font-semibold text-green-500'>{sold}</p>
   <div className="card-actions justify-end">
    
@@ -25,8 +32,7 @@ const AddProducts = ({addPD, products, handleModal}) => {
 </div>
 </div>
  
- </> : <h3 className='text-2xl text-center text-gray-500 font-bold mt-40'>No Items</h3>
- }
+
   </div>
 
  

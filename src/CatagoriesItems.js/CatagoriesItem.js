@@ -18,7 +18,7 @@ const date = format(selectedDate, 'PP')
 const {data: addProduct = []} = useQuery({
   queryKey:['addProduct'],
   queryFn: async ()=>{
-    const res = await fetch('http://localhost:5000/addProduct');
+    const res = await fetch('https://books-market-smoky.vercel.app/addProduct');
     const data = await res.json();
     return data;
   }
@@ -55,8 +55,11 @@ const handleModal= (data)=>{
  {
   catagory.map(product =><CatagoryItems key={product.id} product={product}  date={date} handleModal={handleModal}></CatagoryItems>)
  }
+
+<h1 className=''>Seller Items Product</h1>
+
 {products.length ||
-  addProduct?.map(addPD=><AddProducts key={addPD._id} addPD={addPD} products={products} handleModal={handleModal}></AddProducts>)
+  addProduct?.map(addPD=> products.name === addPD.spacialty && <AddProducts key={addPD._id} addPD={addPD} products={products} handleModal={handleModal}></AddProducts>)
 }
  
 </div>
