@@ -20,7 +20,7 @@ const handleAdvertisement =(data)=>{
   date,
  }
  
- fetch('http://localhost:5000/advertisement',{
+ fetch('https://books-market-arifulsinbad.vercel.app/advertisement',{
   method: 'POST',
   headers:{
    'content-type' : 'application/json',

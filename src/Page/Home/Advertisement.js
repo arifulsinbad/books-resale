@@ -13,7 +13,7 @@ const Advertisement = () => {
 const {data: advertisement = []}=useQuery({
   queryKey:['advertisement'],
   queryFn: async ()=>{
-    const res = await fetch('http://localhost:5000/advertisement',{
+    const res = await fetch('https://books-market-arifulsinbad.vercel.app/advertisement',{
       headers:{
         authorization: `bearer ${localStorage.getItem('accessToken')}`
       }

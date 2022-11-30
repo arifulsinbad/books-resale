@@ -36,7 +36,7 @@ const router = createBrowserRouter([
    {
     path:'/catagoriesItem/:id', element:<CatagoriesItem></CatagoriesItem>,
     loader:({params})=>{
-     return fetch(`http://localhost:5000/products/${params.id}`,{
+     return fetch(`https://books-market-arifulsinbad.vercel.app/products/${params.id}`,{
       headers:{
         authorization: `bearer ${localStorage.getItem('accessToken')}`
       }
@@ -57,7 +57,7 @@ const router = createBrowserRouter([
 //   {
 // path:'/advertisement/:id',  element:<Advertisement></Advertisement>,
 // loader: ({params})=>{
-//   return fetch(`http://localhost:5000/addProduct/${params.id}`)
+//   return fetch(`https://books-market-arifulsinbad.vercel.app/addProduct/${params.id}`)
 // } 
 //   }
  
@@ -88,7 +88,7 @@ const router = createBrowserRouter([
    {
     path:'/dashboardLayout/payments/:id', element:<Payments></Payments>,
     loader: ({params})=>{
-      return fetch(`http://localhost:5000/userInfo/${params.id}`)
+      return fetch(`https://books-market-arifulsinbad.vercel.app/userInfo/${params.id}`)
     }
    },
    {

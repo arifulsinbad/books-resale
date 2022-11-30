@@ -13,7 +13,7 @@ console.log(user)
   const {data: userProduct = [], isLoading, refetch} = useQuery({
     queryKey: ['userProduct', user?.email],
     queryFn: async ()=>{
-      const res = await fetch(`http://localhost:5000/userInfo?email=${user?.email}`,{
+      const res = await fetch(`https://books-market-arifulsinbad.vercel.app/userInfo?email=${user?.email}`,{
         headers:{
           authorization: `bearer ${localStorage.getItem('accessToken')}`
         }
@@ -30,7 +30,7 @@ const handleModal=(data)=>{
   setModal(data)
 }
 const handleDelete = (id)=>{
-  fetch(`http://localhost:5000/userInfo/delete/${id}`,{
+  fetch(`https://books-market-arifulsinbad.vercel.app/userInfo/delete/${id}`,{
     method: 'DELETE',
     headers:{
       authorization: `bearer ${localStorage.getItem('accessToken')}`

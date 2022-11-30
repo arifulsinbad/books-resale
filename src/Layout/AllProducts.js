@@ -23,7 +23,7 @@ const date = format(selectedDate, 'PP')
 const {data: addProduct = []} = useQuery({
   queryKey:['addProduct'],
   queryFn: async ()=>{
-    const res = await fetch('http://localhost:5000/addProduct',{
+    const res = await fetch('https://books-market-arifulsinbad.vercel.app/addProduct',{
       headers:{
         authorization: `bearer ${localStorage.getItem('accessToken')}`
       }

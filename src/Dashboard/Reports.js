@@ -8,7 +8,7 @@ const Reports = () => {
   const {data: users = [], isLoading, refetch} = useQuery({
     queryKey:['report'],
     queryFn: async ()=>{
-      const res = await fetch('http://localhost:5000/report',{
+      const res = await fetch('https://books-market-arifulsinbad.vercel.app/report',{
         headers:{
           authorization: `bearer ${localStorage.getItem('accessToken')}`
         }
@@ -18,7 +18,7 @@ const Reports = () => {
     }
   })
 const handleDelete = (id)=>{
-  fetch(`http://localhost:5000/users/report/${id}`,{
+  fetch(`https://books-market-arifulsinbad.vercel.app/users/report/${id}`,{
     method: 'DELETE',
     headers:{
       authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -35,7 +35,7 @@ const handleDelete = (id)=>{
   .catch(err=>console.log(err))
 }
 const handleDeleted = (id)=>{
-  fetch(`http://localhost:5000/report/delete/${id}`,{
+  fetch(`https://books-market-arifulsinbad.vercel.app/report/delete/${id}`,{
     method: 'DELETE',
     headers:{
       authorization: `bearer ${localStorage.getItem('accessToken')}`

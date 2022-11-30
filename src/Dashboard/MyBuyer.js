@@ -11,7 +11,7 @@ const MyBuyer = () => {
   const {data: userProduct = [], isLoading} = useQuery({
     queryKey: ['userInfo'],
     queryFn: async ()=>{
-      const res = await fetch(`http://localhost:5000/userInfo`,{
+      const res = await fetch(`https://books-market-arifulsinbad.vercel.app/userInfo`,{
         headers:{
           authorization: `bearer ${localStorage.getItem('accessToken')}`
         }

@@ -64,7 +64,7 @@ const usersData =(data)=>{
    }
    console.log(users)
   
-   fetch('http://localhost:5000/users',{
+   fetch('https://books-market-arifulsinbad.vercel.app/users',{
     method: 'POST',
     headers:{
       'content-type' : 'application/json',
@@ -87,7 +87,7 @@ const providerData =(providers)=>{
   
 
  
-  fetch('http://localhost:5000/users',{
+  fetch('https://books-market-arifulsinbad.vercel.app/users',{
    method: 'POST',
    headers:{
      'content-type' : 'application/json',

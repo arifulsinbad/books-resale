@@ -2,10 +2,11 @@
 
 ## Live Site Link
 
-Click Now Link : 
+Click Now Link : https://books-market-5b12a.web.app
 
 ## Admin Email and Password
-
+Email : ali@gmail.com
+password: Ali@1212
 
 ### Web Site Information 
 1. My Wed site islamic relative web site. 

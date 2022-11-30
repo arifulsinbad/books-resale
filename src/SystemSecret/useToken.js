@@ -10,7 +10,7 @@ console.log(email)
 useEffect(()=>{
 
 if(email){
- fetch(`http://localhost:5000/jwt?email=${email}`,{
+ fetch(`https://books-market-arifulsinbad.vercel.app/jwt?email=${email}`,{
   headers:{
    authorization: `bearer ${localStorage.getItem('accessToken')}`
   }

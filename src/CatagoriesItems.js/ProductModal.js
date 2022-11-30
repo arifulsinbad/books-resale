@@ -26,7 +26,7 @@ const userInfo = {
  sellerId: _id
 } 
 
-fetch('http://localhost:5000/userInfo',{
+fetch('https://books-market-arifulsinbad.vercel.app/userInfo',{
  method: 'POST',
  headers:{
   'content-type' : 'application/json',
