@@ -160,7 +160,7 @@ const providerData =(providers)=>{
       {errors.user && <p className='text-red-600'>{errors.user?.message}</p>}
 </div>
 
-        <input className='w-full btn btn-accent mt-8' type="submit" />
+        <input className='w-full btn btn-accent mt-8' type="submit" value='Sign Up'/>
   
         <span className="label-text text-center">Alredy have a Account?<Link to='/login' className='text-info'>Login Now</Link></span>
         <p className='text-red-600'>{error}</p>

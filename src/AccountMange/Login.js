@@ -101,7 +101,7 @@ const Login = () => {
   {errors.password && <p className='text-red-600'>{errors.password?.message}</p>}
   <span className="label-text">Forget Password</span>
 </div>
-      <input className='w-full btn btn-accent mt-8' type="submit" />
+      <input className='w-full btn btn-accent mt-8' type="submit" value='Login'/>
 
       <span className="label-text text-center">Nxew to Doctors Portal?<Link to='/signup' className='text-info'>Create new Account</Link></span>
       <p className='text-red-600'>{error}</p>
