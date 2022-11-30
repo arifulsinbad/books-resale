@@ -35,12 +35,42 @@ const Login = () => {
  const googleProvider=()=>{
   googleLogin(provider)
   .then(result=>{
-    const user = result.user
+    const users = result.user
+    const userData = {
+      name: users?.displayName,
+      email: users?.email
+    }
+  
+  providerData(userData)
     console.log(user)
   //  localStorage.setItem('accessToken', user?.accessToken)
   })
   .catch(error=>console.error(error))
  }
+
+ const providerData =(providers)=>{
+  
+
+ 
+  fetch('http://localhost:5000/users',{
+   method: 'POST',
+   headers:{
+     'content-type' : 'application/json',
+     authorization: `bearer ${localStorage.getItem('accessToken')}`
+     
+   },
+   body: JSON.stringify(providers)
+  })
+  .then(res=>res.json())
+  .then(data=>{
+   console.log(data)
+   setCreateEmail(providers.email)
+  })
+  .then(err=>{
+   console.log(err)
+  })
+}
+
  return (
   <div className='h-[800px] flex justify-center items-center'>
 <div>

@@ -4,12 +4,12 @@ import React from 'react';
 
 const CatagoryItems = ({date, product, handleModal, addPD, products}) => {
   // const []
- const {name, details, img, price} =product;
+//  const {name, details, img, price} =product;
 
  return (
   <div>
-   <div>
-   
+   {/* <div> */}
+{/*    
    </div>
    <div>
    <div className="card card-compact  bg-base-100 shadow-xl ">
@@ -24,7 +24,7 @@ const CatagoryItems = ({date, product, handleModal, addPD, products}) => {
     </div>
   </div>
 </div>
-   </div>
+   </div> */}
 
   </div>
  );

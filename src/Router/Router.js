@@ -12,6 +12,8 @@ import MyProducts from "../Dashboard/MyProducts";
 import ReportModal from "../Dashboard/ReportModal";
 import Reports from "../Dashboard/Reports";
 import DispalyError from "../DisplayError/DispalyError";
+import AllProducts from "../Layout/AllProducts";
+import Blog from "../Layout/Blog";
 import Advertisement from "../Page/Home/Advertisement";
 
 import Home from "../Page/Home/Home";
@@ -34,7 +36,11 @@ const router = createBrowserRouter([
    {
     path:'/catagoriesItem/:id', element:<CatagoriesItem></CatagoriesItem>,
     loader:({params})=>{
-     return fetch(`https://books-market-smoky.vercel.app/products/${params.id}`)}
+     return fetch(`http://localhost:5000/products/${params.id}`,{
+      headers:{
+        authorization: `bearer ${localStorage.getItem('accessToken')}`
+      }
+     })}
    },
    {
     path:'/login', element:<Login></Login>
@@ -42,10 +48,16 @@ const router = createBrowserRouter([
    {
     path:'/signUp', element:<SignUp></SignUp>
    },
+   {
+    path:'/blog', element:<Blog></Blog>
+   },
+   {
+    path:'/allProducts', element:<AllProducts></AllProducts>
+   }
 //   {
 // path:'/advertisement/:id',  element:<Advertisement></Advertisement>,
 // loader: ({params})=>{
-//   return fetch(`https://books-market-smoky.vercel.app/addProduct/${params.id}`)
+//   return fetch(`http://localhost:5000/addProduct/${params.id}`)
 // } 
 //   }
  
@@ -76,7 +88,7 @@ const router = createBrowserRouter([
    {
     path:'/dashboardLayout/payments/:id', element:<Payments></Payments>,
     loader: ({params})=>{
-      return fetch(`https://books-market-smoky.vercel.app/userInfo/${params.id}`)
+      return fetch(`http://localhost:5000/userInfo/${params.id}`)
     }
    },
    {

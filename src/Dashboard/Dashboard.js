@@ -8,12 +8,12 @@ import ReportModal from './ReportModal';
 
 const Dashboard = () => {
   const {user}=useContext(AuthContext)
-  const [modal, setModal]=useState()
+  const [modal, setModal]=useState('')
 console.log(user)
   const {data: userProduct = [], isLoading, refetch} = useQuery({
     queryKey: ['userProduct', user?.email],
     queryFn: async ()=>{
-      const res = await fetch(`https://books-market-smoky.vercel.app/userInfo`,{
+      const res = await fetch(`http://localhost:5000/userInfo?email=${user?.email}`,{
         headers:{
           authorization: `bearer ${localStorage.getItem('accessToken')}`
         }
@@ -30,8 +30,11 @@ const handleModal=(data)=>{
   setModal(data)
 }
 const handleDelete = (id)=>{
-  fetch(`https://books-market-smoky.vercel.app/usersInfo/delete/${id}`,{
+  fetch(`http://localhost:5000/userInfo/delete/${id}`,{
     method: 'DELETE',
+    headers:{
+      authorization: `bearer ${localStorage.getItem('accessToken')}`
+    }
   })
   .then(res=>res.json())
   .then(data=>{
@@ -55,8 +58,10 @@ const handleDelete = (id)=>{
         <th>Email</th>
         <th>Address Info</th>
         <th>Date</th>
-        <th>Pay</th>
         <th>Price</th>
+        <th>Pay</th>
+        <th>Report</th>
+        <th>Delete</th>
       </tr>
     </thead>
 
@@ -65,19 +70,20 @@ const handleDelete = (id)=>{
      {userProduct.length &&
       userProduct?.map((product, i)=>product.email === user?.email && <tr className="hover">
       <th>{i+1}</th>
-      <td>{product?.bookName}</td>
+      <td>{product?.name}</td>
       <td>{product?.email}</td>
       <td>{product?.addressInfo}</td>
       <td>{product?.date}</td>
+      <td>{product?.price}</td>
       
       <td>
         {
           product?.paid ? <p className='text-green-500 font-bold'>Paid</p> : <Link to={`/dashboardLayout/payments/${product?._id}`}><button className='btn btn-xs btn-primary'>Pay</button></Link>
         }
       </td>
-      <td><label htmlFor="my-modal-3" onClick={()=> handleModal(product)} className="btn">Report</label></td>
+      <td><label htmlFor="my-modal-3" onClick={()=> handleModal(product)} className="btn btn-xs ">Report</label></td>
       <td>
-        <button onClick={()=> handleDelete(user._id)}  className='btn btn-xs btn-error'>Delete</button>
+        <button onClick={()=> handleDelete(product?._id)}  className='btn btn-xs btn-error '>Delete</button>
       </td>
     </tr>)
      }

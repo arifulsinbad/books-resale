@@ -10,7 +10,11 @@ const [isLoading, setIsLoading]=useState(true)
 
 useEffect(()=>{
 if(email){
- fetch(`https://books-market-smoky.vercel.app/users/user/lam@gmail.com`)
+ fetch(`http://localhost:5000/users/user/lam@gmail.com`,{
+  headers:{
+   authorization: `bearer ${localStorage.getItem('accessToken')}`
+  }
+ })
  .then(res=>res.json())
  .then(data=>{
 setVerify(data.isVerify)

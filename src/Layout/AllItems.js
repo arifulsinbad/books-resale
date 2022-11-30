@@ -1,7 +1,14 @@
-import React from 'react';
 
-const Advertise = ({myItems, handleModal}) => {
- const {name, img, details, price, spacialty, veryfied, location, type, sold} = myItems;
+import React, { useContext, useState } from 'react';
+import { AuthContext } from '../AccountMange/AuthProvider';
+
+
+const AllItems = ({addPD, products, handleModal}) => {
+  const {user} = useContext(AuthContext)
+
+
+ const {name, img, details, price,  veryfied, location, type} = addPD
+
  return (
   <div>
  
@@ -20,22 +27,24 @@ const Advertise = ({myItems, handleModal}) => {
   </div>
 <div className='flex justify-between'>
 
-  <p className='text-xl font-semibold text-green-500'>{sold}</p>
+
 </div>
  {
   veryfied === 'Veryfied' ? <p className='text-lg font-semibold text-green-500'>Seller : {veryfied}</p> : 'Seller : Non Veryfied'
  }
   <div className="card-actions justify-end">
    
- 
-<label htmlFor="my-modal-3" onClick={()=>handleModal(myItems)} className="btn btn-primary">Booking Details</label>
+   <label htmlFor="my-modal-3" onClick={()=>handleModal(addPD)} className="btn btn-primary">Booking Details</label>
+   
   </div>
 </div>
 </div>
  
 
   </div>
+
+ 
  );
 };
 
-export default Advertise;
+export default AllItems;

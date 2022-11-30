@@ -7,11 +7,11 @@ import Loading from '../Private/Loading';
 
 const MyBuyer = () => {
   const {user}=useContext(AuthContext)
-console.log(user)
+// console.log(user)
   const {data: userProduct = [], isLoading} = useQuery({
-    queryKey: ['userProduct', user?.email],
+    queryKey: ['userInfo'],
     queryFn: async ()=>{
-      const res = await fetch(`https://books-market-smoky.vercel.app/userInfo`,{
+      const res = await fetch(`http://localhost:5000/userInfo`,{
         headers:{
           authorization: `bearer ${localStorage.getItem('accessToken')}`
         }
@@ -20,7 +20,7 @@ console.log(user)
       return data;
     }
   })
-
+console.log(userProduct)
   if(isLoading){
     return <Loading></Loading>
   }
@@ -44,16 +44,16 @@ console.log(user)
     <tbody>
      
      {userProduct.length &&
-      userProduct?.map((product, i)=>product.sellerEmail === user?.email && <tr className="hover">
+      userProduct.map((product, i)=>product.sellerEmail === user?.email && <tr className="hover">
       <th>{i+1}</th>
-      <td>{product?.bookName}</td>
-      <td>{product?.email}</td>
-      <td>{product?.addressInfo}</td>
-      <td>{product?.date}</td>
-      <td>{product?.price}</td>
+      <td>{product.bookName}</td>
+      <td>{product.email}</td>
+      <td>{product.addressInfo}</td>
+      <td>{product.date}</td>
+      <td>{product.price}</td>
       <td>
         {
-          product?.paid ? <p className='text-green-500 font-bold'>Paid</p> : <Link to={`/dashboardLayout/payments/${product?._id}`}><button className='btn btn-xs btn-primary'>Pay</button></Link>
+          product.paid ? <p className='text-green-500 font-bold'>Paid</p> : <Link to={`/dashboardLayout/payments/${product._id}`}><button className='btn btn-xs btn-primary'>Pay</button></Link>
         }
       </td>
     </tr>)

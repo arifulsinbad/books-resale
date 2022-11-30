@@ -1,17 +1,22 @@
-import React, { useContext } from 'react';
+import { format } from 'date-fns';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../AccountMange/AuthProvider';
-
-const ProductModal = ({modal, date, }) => {
+import { DayPicker } from 'react-day-picker';
+import { useNavigate } from 'react-router-dom';
+const ProductModal = ({modal}) => {
+const navigate = useNavigate()
  const {user} = useContext(AuthContext)
+ const [selectedDate, setSelectedDate] = useState(new Date())
  const { register, handleSubmit, formState: { errors } } = useForm();
- const {name, price, email, _id} = modal;
+ const {name, price, email, _id, type, details, location, number} = modal;
 
+const date = format(selectedDate, 'PP')
 const handleInfo = (data)=>{
 console.log(data)
 const userInfo = {
  userName: user?.displayName,
- bookName: name,
+ name,
  email: user?.email,
  phone: data.phone,
  addressInfo: data.address,
@@ -21,10 +26,11 @@ const userInfo = {
  sellerId: _id
 } 
 
-fetch('https://books-market-smoky.vercel.app/userInfo',{
+fetch('http://localhost:5000/userInfo',{
  method: 'POST',
  headers:{
-  'content-type' : 'application/json'
+  'content-type' : 'application/json',
+  authorization: `bearer ${localStorage.getItem('accessToken')}`
  },
  body: JSON.stringify(userInfo)
 })
@@ -32,6 +38,7 @@ fetch('https://books-market-smoky.vercel.app/userInfo',{
 .then(data=>{
   if(data.acknowledged){
     alert('Booking Success')
+    navigate('/dashboardLayout')
   }
  console.log(data)
 })
@@ -41,7 +48,7 @@ fetch('https://books-market-smoky.vercel.app/userInfo',{
 
  return (
   <div>
-   {/* The button to open modal */}
+
 
 
 {/* Put this part before </body> tag */}
@@ -49,9 +56,31 @@ fetch('https://books-market-smoky.vercel.app/userInfo',{
 <div className="modal">
   <div className="modal-box relative">
     <label htmlFor="my-modal-3" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+    <div className='hidden'>
+      <DayPicker
+      mode="single"
+      selected={selectedDate}
+      onSelect={setSelectedDate}
+
+      />
+      <p>You have a selected date : {date}</p>
+    </div>
+    <h3 className="text-lg font-bold text-center mt-4 mb-5">Seller Information</h3>
     <h3 className="text-lg font-bold">{name}</h3>
-    <p className="py-4">Date : {date}</p>
+    <h3 className="text-md font-bold">Email : {email}</h3>
+    <div className='flex justify-between'>
+    
+    <p className="py-4">Phone : {number}</p>
+    </div>
+    <div className='flex justify-between'>
+    <p className="py-4">Location : {location}</p>
+    <p className="py-4">Condition : {type}</p>
+    </div>
+    <p className="py-4">Description : {details}</p>
     <div>
+    <h3 className="text-lg font-bold text-center mt-4 mb-5">Buyer Information</h3>
+    <p className="py-4 text-center" >Date : {date}</p>
+    <div className='divider'></div>
     <form onSubmit={handleSubmit(handleInfo)} >
         
   
@@ -90,7 +119,9 @@ fetch('https://books-market-smoky.vercel.app/userInfo',{
     })}  className="input input-bordered w-full h-20" />
     {errors.address && <p className='text-red-600'>{errors.address?.message}</p> }  
  </div>
-        <input className='w-full btn btn-accent mt-8' type="submit" />
+        {
+          email === user?.email ? <h2 className='text-xl text-error text-center font-bold'>Your Product Not Booking</h2> : <input className='w-full btn btn-accent mt-8' type="submit" value='Booking Now' />
+        }
   
     
       </form>

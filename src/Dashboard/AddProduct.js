@@ -1,12 +1,14 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../AccountMange/AuthProvider';
 import Loading from '../Private/Loading';
 
 const AddProduct = () => {
   const { register, handleSubmit, formState: { errors } } = useForm()
   const { user } = useContext(AuthContext)
+  const navigate = useNavigate()
   const imgHostKey = process.env.REACT_APP_apiKey_IMGBB;
   // console.log(imgHostKey)
 
@@ -14,7 +16,7 @@ const AddProduct = () => {
   const { data: spacialties, isLoading } = useQuery({
     queryKey: ['spacialty'],
     queryFn: async () => {
-      const res = await fetch('https://books-market-smoky.vercel.app/productSpacialty', {
+      const res = await fetch('http://localhost:5000/productSpacialty', {
         headers: {
           authorization: `bearer ${localStorage.getItem('accessToken')}`
         }
@@ -42,6 +44,7 @@ const AddProduct = () => {
         //  console.log(imgData)
         if (imgData.success) {
           console.log(imgData)
+          navigate('/dashboardLayout/myProducts')
           alert('Add Success')
           const productInfo = {
             name: data.name,
@@ -50,10 +53,12 @@ const AddProduct = () => {
             location: data.location,
             email: user?.email,
             spacialty: data.spacialty,
-            img: imgData.data.url
+            img: imgData.data.url,
+            number: data.number,
+            type: data.type
           }
           console.log(productInfo)
-          fetch('https://books-market-smoky.vercel.app/addProduct', {
+          fetch('http://localhost:5000/addProduct', {
             method: 'POST',
             headers: {
               'content-type': 'application/json',
@@ -67,7 +72,7 @@ const AddProduct = () => {
 
 
   return (
-    <div className='w-1/2 mx-auto'>
+    <div className='w-1/2 mx-auto mb-11'>
       <form onSubmit={handleSubmit(handleAdd)} >
 
 
@@ -87,7 +92,7 @@ const AddProduct = () => {
 
         <div className="form-control w-full ">
           <label className="label">
-            <span className="label-text">Details</span>
+            <span className="label-text">Product Details</span>
 
           </label>
           <input type='text' {...register('details', {
@@ -125,6 +130,19 @@ const AddProduct = () => {
 
 
         </div>
+        <div className="form-control w-full ">
+          <label className="label">
+            <span className="label-text">Number</span>
+
+          </label>
+          <input type='number' {...register('number', {
+            required: 'Number Required'
+          })} className="input input-bordered w-full " />
+          {errors.number && <p className='text-red-600'>{errors.number?.message}</p>}
+
+
+
+        </div>
         {/* <div className="form-control w-full ">
  <label className="label">
    <span className="label-text">Email</span>
@@ -151,6 +169,22 @@ const AddProduct = () => {
             }
           </select>
           {errors.spacialty && <p className='text-red-600'>{errors.spacialty?.message}</p>}
+
+
+        </div>
+        <div className="form-control w-full ">
+          <label className="label">
+            <span className="label-text">Condition Type</span>
+
+          </label>
+          <select {...register('type', {
+            required: "Condition type Required"
+          })} className="select select-bordered w-full">
+           <option>Excelent</option>
+           <option>Good</option>
+           <option>Fair</option>
+          </select>
+          {errors.type && <p className='text-red-600'>{errors.type?.message}</p>}
 
 
         </div>

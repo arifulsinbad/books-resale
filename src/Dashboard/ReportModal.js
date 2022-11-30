@@ -23,10 +23,11 @@ productId : modal.sellerId
 
 } 
 
-fetch('https://books-market-smoky.vercel.app/report',{
+fetch('http://localhost:5000/report',{
  method: 'POST',
  headers:{
-  'content-type' : 'application/json'
+  'content-type' : 'application/json',
+  authorization: `bearer ${localStorage.getItem('accessToken')}`
  },
  body: JSON.stringify(userInfo)
 })
@@ -51,8 +52,7 @@ fetch('https://books-market-smoky.vercel.app/report',{
 <div className="modal">
   <div className="modal-box relative">
     <label htmlFor="my-modal-3" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-    {/* <h3 className="text-lg font-bold">{bookName}</h3> */}
-    {/* <p className="py-4">Date : {date}</p> */}
+  
     <div>
     <form onSubmit={handleSubmit(handleInfo)} >
         
@@ -92,7 +92,7 @@ fetch('https://books-market-smoky.vercel.app/report',{
     })}  className="input input-bordered w-full h-20" />
     {errors.report && <p className='text-red-600'>{errors.report?.message}</p> }  
  </div>
-        <input className='w-full btn btn-accent mt-8' type="submit" value='Report Modal' />
+        <input className='w-full btn btn-accent mt-8 ' type="submit" value='Report Modal' />
   
     
       </form>

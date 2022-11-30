@@ -8,20 +8,44 @@ const Reports = () => {
   const {data: users = [], isLoading, refetch} = useQuery({
     queryKey:['report'],
     queryFn: async ()=>{
-      const res = await fetch('https://books-market-smoky.vercel.app/report');
+      const res = await fetch('http://localhost:5000/report',{
+        headers:{
+          authorization: `bearer ${localStorage.getItem('accessToken')}`
+        }
+      });
       const data = await res.json();
       return data;
     }
   })
 const handleDelete = (id)=>{
-  fetch(`https://books-market-smoky.vercel.app/users/report/${id}`,{
+  fetch(`http://localhost:5000/users/report/${id}`,{
     method: 'DELETE',
+    headers:{
+      authorization: `bearer ${localStorage.getItem('accessToken')}`
+    }
   })
   .then(res=>res.json())
   .then(data=>{
     console.log(data)
     if(data.acknowledged){
       alert('Report accepted Product Delete Success')
+      refetch()
+     }
+  })
+  .catch(err=>console.log(err))
+}
+const handleDeleted = (id)=>{
+  fetch(`http://localhost:5000/report/delete/${id}`,{
+    method: 'DELETE',
+    headers:{
+      authorization: `bearer ${localStorage.getItem('accessToken')}`
+    }
+  })
+  .then(res=>res.json())
+  .then(data=>{
+    console.log(data)
+    if(data.acknowledged){
+      alert('Report Delete Success')
       refetch()
      }
   })
@@ -43,6 +67,7 @@ const handleDelete = (id)=>{
         <th>User Email</th>
         <th>Seller Email</th>
         <th>Report Subject</th>
+        <th>Product Delete</th>
         <th>Delete</th>
       </tr>
     </thead>
@@ -59,7 +84,10 @@ const handleDelete = (id)=>{
       <td>{user.reportInfo}</td>
    
       <td>
-        <button onClick={()=> handleDelete(user.productId)}  className='btn btn-xs btn-error'>Delete</button>
+        <button onClick={()=> handleDelete(user.productId)}  className='btn btn-xs btn-error'>Product Delete</button>
+      </td>
+      <td>
+        <button onClick={()=> handleDeleted(user._id)}  className='btn btn-xs btn-error'>Delete</button>
       </td>
     </tr>)
      }

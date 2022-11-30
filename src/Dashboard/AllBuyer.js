@@ -7,13 +7,17 @@ const AllBuyer = () => {
   const {data: users = [], isLoading, refetch} = useQuery({
     queryKey:['users'],
     queryFn: async ()=>{
-      const res = await fetch('https://books-market-smoky.vercel.app/users');
+      const res = await fetch('http://localhost:5000/users',{
+        headers:{
+          authorization: `bearer ${localStorage.getItem('accessToken')}`
+        }
+      });
       const data = await res.json();
       return data;
     }
   })
 const handleAdmin = (id)=>{
-  fetch(`https://books-market-smoky.vercel.app/users/admin/${id}`,{
+  fetch(`http://localhost:5000/users/admin/${id}`,{
     method: 'PUT',
     headers:{
       authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -38,8 +42,11 @@ const handleAdmin = (id)=>{
     return <Loading></Loading>
   }
   const handleDelete = (id)=>{
-    fetch(`https://books-market-smoky.vercel.app/users/delete/${id}`,{
+    fetch(`http://localhost:5000/users/delete/${id}`,{
       method: 'DELETE',
+      headers:{
+        authorization: `bearer ${localStorage.getItem('accessToken')}`
+      }
     })
     .then(res=>res.json())
     .then(data=>{

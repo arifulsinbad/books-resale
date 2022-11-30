@@ -8,13 +8,17 @@ const AllSeller = () => {
   const {data: users = [], isLoading, refetch} = useQuery({
     queryKey:['users'],
     queryFn: async ()=>{
-      const res = await fetch('https://books-market-smoky.vercel.app/users');
+      const res = await fetch('http://localhost:5000/users',{
+        headers:{
+          authorization: `bearer ${localStorage.getItem('accessToken')}`
+        }
+      });
       const data = await res.json();
       return data;
     }
   })
-const handleVerify = (id)=>{
-  fetch(`https://books-market-smoky.vercel.app/users/verify/${id}`,{
+const handleVerify = (email)=>{
+  fetch(`http://localhost:5000/users/verify/${email}`,{
     method: 'PUT',
     headers:{
       authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -33,7 +37,7 @@ const handleVerify = (id)=>{
   })
 }
 const handleDelete = (id)=>{
-  fetch(`https://books-market-smoky.vercel.app/users/delete/${id}`,{
+  fetch(`http://localhost:5000/users/delete/${id}`,{
     method: 'DELETE',
   })
   .then(res=>res.json())
@@ -60,7 +64,7 @@ const handleDelete = (id)=>{
         <th>Number</th>
         <th>Name</th>
         <th>Email</th>
-        <th>Admin</th>
+        <th>Seller Verified</th>
         <th>Delete</th>
       </tr>
     </thead>
@@ -75,7 +79,7 @@ const handleDelete = (id)=>{
       <td>{user.email}</td>
       <td>
         {
-          user.veryfied !== 'Veryfied' && <button onClick={()=>handleVerify(user._id)} className='btn btn-xs btn-info'>Make VeryFied</button>
+          user.veryfied !== 'Veryfied' && <button onClick={()=>handleVerify(user.email)} className='btn btn-xs btn-info'>Make VeryFied</button>
         }
       </td>
       <td>

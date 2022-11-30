@@ -43,7 +43,13 @@ signUp(data.email, data.password)
  const handleProvider =()=>{
   googleLogin(provider)
   .then(result=>{
-   const user =result.user
+   const users =result.user
+   const userData = {
+    name: users?.displayName,
+    email: users?.email
+  }
+
+providerData(userData)
    console.log(user)
   //  setCreateEmail(user?.email)
   })
@@ -58,10 +64,11 @@ const usersData =(data)=>{
    }
    console.log(users)
   
-   fetch('https://books-market-smoky.vercel.app/users',{
+   fetch('http://localhost:5000/users',{
     method: 'POST',
     headers:{
-      'content-type' : 'application/json'
+      'content-type' : 'application/json',
+      authorization: `bearer ${localStorage.getItem('accessToken')}`
     },
     body: JSON.stringify(users)
    })
@@ -73,7 +80,29 @@ const usersData =(data)=>{
    .then(err=>{
     console.log(err)
    })
+
+}
+
+const providerData =(providers)=>{
   
+
+ 
+  fetch('http://localhost:5000/users',{
+   method: 'POST',
+   headers:{
+     'content-type' : 'application/json',
+     authorization: `bearer ${localStorage.getItem('accessToken')}`
+   },
+   body: JSON.stringify(providers)
+  })
+  .then(res=>res.json())
+  .then(data=>{
+   console.log(data)
+   setCreateEmail(providers.email)
+  })
+  .then(err=>{
+   console.log(err)
+  })
 }
 //  const check = (event)=>{
 //   console.log(event.)

@@ -6,7 +6,7 @@ import CheckOut from './CheckOut';
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PK_KEY);
 const Payments = () => {
  const userInfo = useLoaderData()
- const {bookName: name, price, date, email, user} =userInfo;
+ const { name, price, date, email} =userInfo;
  return (
   <div>
      <div>
