@@ -15,8 +15,8 @@ const AddProducts = ({addPD, products, handleModal}) => {
   
  
 
-  <div className="card card-compact  bg-base-100 shadow-xl  " style={{height: '30vw'}}>
-<figure><img src={img} alt="Shoes" className='' style={{height: '26vw'}}/></figure>
+  <div className="card card-compact  bg-base-100 shadow-xl  mx-auto" style={{height: '40em'}}>
+<figure><img src={img} alt="Shoes" className='' /></figure>
 <div className="card-body">
   <h2 className="card-title">{name}</h2>
   <p>{details}</p>

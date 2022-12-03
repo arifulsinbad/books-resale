@@ -33,7 +33,7 @@ const {data: addProduct = []} = useQuery({
 })
 
 
-console.log(addProduct)
+// console.log(addProduct)
 const handleModal= (data)=>{
   setModal(data)
 }
@@ -66,7 +66,7 @@ const handleModal= (data)=>{
 
 <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-14 mt-7 mb-24 w-11/12 mx-auto'>
 {
-  addProduct?.map(addPD=> products.name === addPD.spacialty && <AddProducts key={addPD._id} addPD={addPD} products={products} handleModal={handleModal}></AddProducts>)
+  addProduct.map(addPD=> products.name === addPD.spacialty && <AddProducts key={addPD._id} addPD={addPD} products={products} handleModal={handleModal}></AddProducts>)
 }
 </div>
 </div>

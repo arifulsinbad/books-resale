@@ -18,6 +18,7 @@ import Advertisement from "../Page/Home/Advertisement";
 
 import Home from "../Page/Home/Home";
 import Payments from "../Payment/Payments";
+import Private from "../Private/Private";
 import AdminRoute from "../SystemSecret/AdminRoute";
 import SellerRoute from "../SystemSecret/SellerRoute";
 
@@ -34,7 +35,7 @@ const router = createBrowserRouter([
     path:'/', element:<Home></Home>
    },
    {
-    path:'/catagoriesItem/:id', element:<CatagoriesItem></CatagoriesItem>,
+    path:'/catagoriesItem/:id', element:<Private><CatagoriesItem></CatagoriesItem></Private>,
     loader:({params})=>{
      return fetch(`https://books-market-arifulsinbad.vercel.app/products/${params.id}`,{
       headers:{
@@ -52,7 +53,7 @@ const router = createBrowserRouter([
     path:'/blog', element:<Blog></Blog>
    },
    {
-    path:'/allProducts', element:<AllProducts></AllProducts>
+    path:'/allProducts', element:<Private><AllProducts></AllProducts></Private>
    }
 //   {
 // path:'/advertisement/:id',  element:<Advertisement></Advertisement>,
@@ -68,7 +69,7 @@ const router = createBrowserRouter([
   errorElement:<DispalyError></DispalyError>,
   children: [
    {
-    path:'/dashboardLayout', element:<Dashboard></Dashboard>
+    path:'/dashboardLayout', element:<Private><Dashboard></Dashboard></Private>
    },
    {
     path:'/dashboardLayout/allUser', element:<AdminRoute><AllUser></AllUser></AdminRoute>

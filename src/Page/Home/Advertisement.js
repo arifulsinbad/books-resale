@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../AccountMange/AuthProvider';
 import ProductModal from '../../CatagoriesItems.js/ProductModal';
+import Private from '../../Private/Private';
 import Advertise from './Advertise';
 
 const Advertisement = () => {
@@ -26,6 +27,7 @@ const {data: advertisement = []}=useQuery({
 
 const handleModal=(dataAdvertise)=>{
   setAdvertise(dataAdvertise)
+  
 }
  return (
   <div >
@@ -35,10 +37,10 @@ const handleModal=(dataAdvertise)=>{
    </div>
   <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-10 mt-14 mb-24'>
 { advertisement.length &&
-  advertisement?.map(myItems=>myItems.sold !== 'Out of Stock' && <Advertise key={myItems._id} myItems={myItems} handleModal={handleModal}></Advertise>)
+  advertisement.map(myItems=>myItems.sold !== 'Out of Stock' && <Advertise key={myItems._id} myItems={myItems} handleModal={handleModal}></Advertise>)
 }
   </div>
-<ProductModal modal={modal} ></ProductModal>
+  <ProductModal modal={modal} ></ProductModal>
   </div>
  );
 };

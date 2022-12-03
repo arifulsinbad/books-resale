@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { AuthContext } from '../AccountMange/AuthProvider';
 import { DayPicker } from 'react-day-picker';
 import { useNavigate } from 'react-router-dom';
+import Private from '../Private/Private';
 const ProductModal = ({modal}) => {
 const navigate = useNavigate()
  const {user} = useContext(AuthContext)
@@ -127,6 +128,7 @@ fetch('https://books-market-arifulsinbad.vercel.app/userInfo',{
       </form>
     </div>
   </div>
+
 </div>
   </div>
  );

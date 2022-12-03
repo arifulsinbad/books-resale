@@ -24,7 +24,7 @@ useEffect(()=>{
    <h1 className='text-4xl font-bold text-center text-gray-600'>Books Catagories</h1>
    <div className='divider'>Collect</div>
    <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-7'>
-{
+{catagory.length &&
  catagory.map(catagory=><Catagory key={catagory._id} catagory={catagory}></Catagory>)
 }
    </div>
